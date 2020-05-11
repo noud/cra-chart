@@ -27,16 +27,14 @@ class MyChart extends React.Component {
     super(props);
     this.chartReference = React.createRef();
   }
-
-  componentWillMount() {
+  
+  componentDidMount() {
     // Chart.pluginService.register({
     //   afterDraw: function (chart, easing) {
     //     // Plugin code.
     //   }
     // });
-  }
 
-  componentDidMount() {
     console.log(this.chartReference); // returns a Chart.js instance reference
   }
 
