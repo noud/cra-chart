@@ -44,7 +44,7 @@ class MyChart extends React.Component {
     var { data: values, labels } = this.props;
     
     const enrichedLabels = labels.slice(0);
-    if (free.label != enrichedLabels[labels.length - 1]) {
+    if (free.label !== enrichedLabels[labels.length - 1]) {
       enrichedLabels.push(free.label);
     }
 
