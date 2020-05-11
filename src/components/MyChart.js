@@ -1,8 +1,11 @@
 import React from 'react';
+
 // eslint-disable-next-line
 import Chart, { Doughnut } from 'react-chartjs-2';
 import { defaults } from 'react-chartjs-2';
 import merge from 'lodash.merge';
+
+import getRemainer from '../lib/getRemainer';
 
 const free = {
   color: 'gray',
@@ -39,18 +42,10 @@ class MyChart extends React.Component {
     console.log(this.chartReference); // returns a Chart.js instance reference
   }
 
-  getRemainer(values) {
-    var total = 0;
-    values.map((value) => (
-      total += value
-    ));
-    let rest = 100 - total;
-    return rest > 0 ? rest : 0;
-  }
-
   render() {
-    var { data: dataValues } = this.props;
-    dataValues.push(this.getRemainer(dataValues));
+    var { data: dataValues, labels } = this.props;
+    dataValues.push(getRemainer(dataValues));
+    labels.push(free.label);
     
     // const data = (canvas) => {
     //     const ctx = canvas.getContext("2d")
@@ -64,11 +59,7 @@ class MyChart extends React.Component {
     // }
 
     const data = {
-      labels: [
-        'Noud',
-        'Balder',
-        free.label
-      ],
+      labels: labels,
       datasets: [{
         data: dataValues,
         backgroundColor: [
