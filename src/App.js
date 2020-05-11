@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import MyChart from './components/MyChart';
+const data = [40, 45, 5];
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         </a>
       </header> */}
       <body>
-        <MyChart />
+        <MyChart data={data}/>
       </body>
     </div>
   );
