@@ -1,7 +1,7 @@
 import React from 'react';
 import MyChart from './MyChart';
 
-const data = [40, 45, 5];
+const data = [40, 45];
 
 function DataVisualizer() {
   return (

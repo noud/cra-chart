@@ -39,8 +39,18 @@ class MyChart extends React.Component {
     console.log(this.chartReference); // returns a Chart.js instance reference
   }
 
+  getRemainer(values) {
+    var total = 0;
+    values.map((value) => (
+      total += value
+    ));
+    let rest = 100 - total;
+    return rest > 0 ? rest : 0;
+  }
+
   render() {
-    const { data: dataValues } = this.props;
+    var { data: dataValues } = this.props;
+    dataValues.push(this.getRemainer(dataValues));
     
     // const data = (canvas) => {
     //     const ctx = canvas.getContext("2d")
