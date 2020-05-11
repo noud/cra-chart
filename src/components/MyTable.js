@@ -28,7 +28,7 @@ class MyTable extends React.Component {
       <form>
         <Container>
           {labels.map((value, index) => (
-            <Row>
+            <Row key={index}>
               <Col sm={2}></Col>
               <Col sm={2}>{labels[index]}</Col>
               <Col sm={4}>
