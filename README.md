@@ -1,6 +1,6 @@
 ![chart](./docs/chart.png?raw=true "chart")
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and [react-chartjs-2](http://jerairrest.github.io/react-chartjs-2) was added.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and [react-chartjs-2](http://jerairrest.github.io/react-chartjs-2) was added to use [Chart.js](https://www.chartjs.org).
 
 ## Available Scripts
 
