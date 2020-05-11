@@ -2,8 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import MyChart from './components/MyChart';
-const data = [40, 45, 5];
+import DataVisualizer from './components/DataVisualizer';
 
 function App() {
   return (
@@ -23,7 +22,7 @@ function App() {
         </a>
       </header> */}
       <body>
-        <MyChart data={data}/>
+        <DataVisualizer />
       </body>
     </div>
   );
