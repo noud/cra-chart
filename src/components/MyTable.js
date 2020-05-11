@@ -1,9 +1,12 @@
 import React from 'react';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col } from 'react-bootstrap'
+
 class MyTable extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentWillMount() {
   }
@@ -12,24 +15,31 @@ class MyTable extends React.Component {
   }
 
   setValue = (value) => {
+    const { data } = this.props;
+    data[value.name] = parseInt(value.value);
     console.log(value.name, value.value);
+    console.log('data', data);
   };
 
   render() {
-    var { data: dataValues, labels } = this.props;
+    const { data: dataValues, labels } = this.props;
   
     return (
       <form>
-        {labels.map((value, index) => (
-          <div>
-            <label for={index}>{labels[index]}</label>
-            <input name={index}
-              value={dataValues[index]}
-              onChange={(e) => this.setValue(e.target)}
-            />
-            <br />
-        </div>
-        ))}
+        <Container>
+          {labels.map((value, index) => (
+            <Row>
+              <Col sm={2}></Col>
+              <Col sm={2}>{labels[index]}</Col>
+              <Col sm={4}>
+                <input name={index}
+                  value={dataValues[index]}
+                  onChange={(e) => this.setValue(e.target)}
+                />
+              </Col>
+            </Row>
+          ))}
+        </Container>
       </form>
     )
   }
