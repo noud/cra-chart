@@ -4,6 +4,11 @@ import Chart, { Doughnut } from 'react-chartjs-2';
 import { defaults } from 'react-chartjs-2';
 import merge from 'lodash.merge';
 
+const free = {
+  color: 'gray',
+  label: 'free'
+};
+
 // Disable animating charts by default.
 defaults.global.animation = false;
 
@@ -50,19 +55,19 @@ class MyChart extends React.Component {
           labels: [
             'Noud',
             'Balder',
-            'vrij'
+            free.label
           ],
           datasets: [{
             data: [40, 45, 5],
             backgroundColor: [
             '#FF6384',
             '#36A2EB',
-            '#FFCE56'
+            free.color
             ],
             hoverBackgroundColor: [
             '#FF6384',
             '#36A2EB',
-            '#FFCE56'
+            free.color
             ]
           }]
         };
