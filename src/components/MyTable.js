@@ -4,24 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap'
 
 class MyTable extends React.Component {
-  constructor(props) {
-    super(props);
-    const { data } = this.props;
-    this.state = { data };
-  }
-
   componentDidMount() {
   }
 
-  handleChange(value) {
-    var { data } = this.state;
-    data[parseInt(value.name)] = parseInt(value.value);
-    this.setState({data});
-  };
-
   render() {
-    const { data: dataValues, labels } = this.props;
-  
+    const { data: dataValues, labels, onChange: handleChange } = this.props;
+
     return (
       <form>
         <Container>
@@ -32,7 +20,7 @@ class MyTable extends React.Component {
               <Col sm={4}>
                 <input name={index}
                   value={dataValues[index]}
-                  onChange={(e) => this.handleChange(e.target)}
+                  onChange={handleChange}
                 />
               </Col>
             </Row>
