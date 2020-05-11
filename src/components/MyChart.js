@@ -48,12 +48,12 @@ class MyChart extends React.Component {
 
         const data = {
           labels: [
-            'Red',
-            'Green',
-            'Yellow'
+            'Noud',
+            'Balder',
+            'vrij'
           ],
           datasets: [{
-            data: [300, 50, 100],
+            data: [40, 45, 5],
             backgroundColor: [
             '#FF6384',
             '#36A2EB',
