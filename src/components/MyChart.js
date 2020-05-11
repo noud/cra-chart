@@ -5,8 +5,6 @@ import Chart, { Doughnut } from 'react-chartjs-2';
 import { defaults } from 'react-chartjs-2';
 import merge from 'lodash.merge';
 
-import getRemainer from '../lib/getRemainer';
-
 const free = {
   color: 'gray',
   label: 'free'
@@ -43,10 +41,13 @@ class MyChart extends React.Component {
   }
 
   render() {
-    var { data: dataValues, labels } = this.props;
-    dataValues.push(getRemainer(dataValues));
-    labels.push(free.label);
+    var { data: values, labels } = this.props;
     
+    const enrichedLabels = labels.slice(0);
+    if (free.label != enrichedLabels[labels.length - 1]) {
+      enrichedLabels.push(free.label);
+    }
+
     // const data = (canvas) => {
     //     const ctx = canvas.getContext("2d")
     //     const gradient = ctx.createLinearGradient(0,0,100,0);
@@ -59,9 +60,9 @@ class MyChart extends React.Component {
     // }
 
     const data = {
-      labels: labels,
+      labels: enrichedLabels,
       datasets: [{
-        data: dataValues,
+        data: values,
         backgroundColor: [
         '#FF6384',
         '#36A2EB',
