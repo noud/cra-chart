@@ -21,6 +21,10 @@ const free = {
   label: 'free'
 };
 
+const total = {
+  label: 'Total'
+};
+
 const getState = () => ({
   labels: [],
   datasets: [{
@@ -126,6 +130,9 @@ class MyChart extends React.Component {
     // @todo redraw
     // https://github.com/jerairrest/react-chartjs-2/issues/90
 
+    total.value = this.state.datasets[0].data.reduce((accumulator, currentValue) => accumulator + currentValue);
+    total.color = total.value > 100 ? 'text-danger' : null;
+
     return (
       <div>
       <Doughnut data={this.state} redraw />
@@ -144,6 +151,13 @@ class MyChart extends React.Component {
               </Col>
             </Row>
           ))}
+          <Row key={labels.length}>
+          <Col sm={2}></Col>
+          <Col sm={2}>{total.label}</Col>
+              <Col sm={4} className={total.color}>
+                {total.value}
+              </Col>
+          </Row>
         </Container>
       </form>
       </div>
