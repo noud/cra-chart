@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
 
-import DataVisualizer from './components/DataVisualizer';
+import MyChart from './components/MyChart';
 
 function App() {
   return (
     <header className="App">
-      <DataVisualizer />
+      <MyChart />
     </header>
   );
 }
