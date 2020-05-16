@@ -29,6 +29,7 @@ const getState = () => ({
   labels: [],
   datasets: [{
     data: [],
+    tableData: [],
     backgroundColor: [
     '#FF6384',
     '#36A2EB',
@@ -65,6 +66,7 @@ class MyChart extends React.Component {
     initialState.labels = labels;
     initialState.datasets[0].data = cloneDeep(startData);
     initialState.datasets[0].data.push(getRemainer(initialState.datasets[0].data));
+    initialState.datasets[0].tableData = cloneDeep(initialState.datasets[0].data);
     this.state = cloneDeep(this.enriche(initialState));
     this.prevState = cloneDeep(this.state);
   }
@@ -72,8 +74,15 @@ class MyChart extends React.Component {
   handleChange(enriche, state, value) {
     let defaultState = enriche(state);
     if (this !== undefined) {
-      defaultState.datasets[0].data[parseInt(value.name)] = parseInt(value.value); // <<<<
-      defaultState.datasets[0].data = setRemainer(defaultState.datasets[0].data);
+      defaultState.datasets[0].tableData[parseInt(value.name)] = parseInt(value.value); // <<<<
+      defaultState.datasets[0].tableData = setRemainer(defaultState.datasets[0].tableData);
+      defaultState.datasets[0].data = cloneDeep(defaultState.datasets[0].tableData);
+      if (value.value > 100) {
+        const othersData = cloneDeep(defaultState.datasets[0].data);
+        othersData.splice(parseInt(value.name), 1);
+        const others = othersData.reduce((accumulator, currentValue) => accumulator + currentValue);
+        defaultState.datasets[0].data[parseInt(value.name)] = parseInt(100 - others); // <<<<
+      }
       this.setState(defaultState);
     }
   };
@@ -89,7 +98,7 @@ class MyChart extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (JSON.stringify(this.state.datasets[0].data) !== JSON.stringify(this.prevState.datasets[0].data)) {
+    if (JSON.stringify(this.state.datasets[0].tableData) !== JSON.stringify(this.prevState.datasets[0].tableData)) {
       this.setState(this.state);
       this.prevState = cloneDeep(this.state);
     }
@@ -109,6 +118,7 @@ class MyChart extends React.Component {
     currentState.labels = enrichedLabels;
 
     currentState.datasets[0].data = cloneDeep(values[0].data);
+    currentState.datasets[0].tableData = cloneDeep(values[0].tableData);
 
     return currentState;
   }
@@ -130,7 +140,7 @@ class MyChart extends React.Component {
     // @todo redraw
     // https://github.com/jerairrest/react-chartjs-2/issues/90
 
-    total.value = this.state.datasets[0].data.reduce((accumulator, currentValue) => accumulator + currentValue);
+    total.value = this.state.datasets[0].tableData.reduce((accumulator, currentValue) => accumulator + currentValue);
     total.color = total.value > 100 ? 'text-danger' : null;
 
     return (
@@ -145,7 +155,7 @@ class MyChart extends React.Component {
               <Col sm={2}>{labels[index]}</Col>
               <Col sm={4}>
                 <input name={index}
-                  value={this.state.datasets[0].data[index]}
+                  value={this.state.datasets[0].tableData[index]}
                   onChange={(e) => this.handleChange(this.enriche, this.state, e.target)}
                 />
               </Col>
