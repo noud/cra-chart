@@ -58,7 +58,7 @@ merge(defaults, {
   },
 });
 
-class MyChart extends React.Component {
+class ChartAndForm extends React.Component {
   constructor(props) {
     super(props);
     this.chartRef = React.createRef();
@@ -148,13 +148,16 @@ class MyChart extends React.Component {
         <Doughnut data={this.state} redraw />
         <br />
         <Container>
-          <Form>
-            {labels.map((value, index) => (
-              <Col sm={{ span: 12, offset: 4 }} md={{ span: 12, offset: 4 }}>
-                <Form.Group as={Row} controlId={index}>
-                  <Form.Label>{labels[index]}</Form.Label>
-                  <Col sm={4} xs={4}>
-                    <Form.Control name={index}
+          <Col xs={{ span: 10, offset: 3 }}>
+            <Form className="Form">
+              {labels.map((value, index) => (
+                <Form.Group as={Row} className="Form-Group-left" controlId={index}>
+                  <Col xs={1}>
+                    <Form.Label>{labels[index]}</Form.Label>
+                  </Col>
+                  <Col xs={{ span: 3, offset: 1 }}>
+                    <Form.Control className="Form-Control-numeric"
+                      name={index}
                       type="number"
                       min="0"
                       max="99"
@@ -163,25 +166,26 @@ class MyChart extends React.Component {
                     />
                   </Col>
                 </Form.Group>
-              </Col>
-            ))}
-            <Col sm={{ span: 12, offset: 4 }} md={{ span: 12, offset: 4 }}>
-              <Form.Group as={Row} controlId={labels.length+1}>
-                <Form.Label>{total.label}</Form.Label>
-                <Col sm={4} xs={4}>
-                  <Form.Control name={"total"}
-                    className={total.color}
+              ))}
+              <Form.Group as={Row} className="Form-Group-left" controlId={labels.length+1}>
+                <Col xs={1} sm={1} md={1}>
+                  <Form.Label>{total.label}</Form.Label>
+                </Col>
+                <Col xs={{ span: 3, offset: 1 }}>
+                  <Form.Control className={total.color + " Form-Control-numeric" }
+                    name={"total"}
                     disabled
+                    type="number"
                     value={total.value}
                   />
                 </Col>
               </Form.Group>
-            </Col>
-          </Form>
+            </Form>
+          </Col>
         </Container>
       </Container>
     );
   }
 }
 
-export default MyChart;
+export default ChartAndForm;

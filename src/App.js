@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
 
-import MyChart from './components/MyChart';
+import ChartAndForm from './components/ChartAndForm';
 
 function App() {
   return (
     <header className="App">
-      <MyChart />
+      <ChartAndForm />
     </header>
   );
 }
