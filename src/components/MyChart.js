@@ -2,7 +2,7 @@ import { cloneDeep, merge } from 'lodash';
 import React from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Form } from 'react-bootstrap'
 
 import { Doughnut, defaults } from 'react-chartjs-2';
 
@@ -144,33 +144,42 @@ class MyChart extends React.Component {
     total.color = total.value > 100 ? 'text-danger' : null;
 
     return (
-      <div>
-      <Doughnut data={this.state} redraw />
-      <br />
-      <form>
+      <Container>
+        <Doughnut data={this.state} redraw />
+        <br />
         <Container>
-          {labels.map((value, index) => (
-            <Row key={index}>
-              <Col sm={2}></Col>
-              <Col sm={2}>{labels[index]}</Col>
-              <Col sm={4}>
-                <input name={index}
-                  value={this.state.datasets[0].tableData[index]}
-                  onChange={(e) => this.handleChange(this.enriche, this.state, e.target)}
-                />
+          <Form>
+            {labels.map((value, index) => (
+              <Col sm={{ span: 12, offset: 4 }} md={{ span: 12, offset: 4 }}>
+                <Form.Group as={Row} controlId={index}>
+                  <Form.Label>{labels[index]}</Form.Label>
+                  <Col sm={4} xs={4}>
+                    <Form.Control name={index}
+                      type="number"
+                      min="0"
+                      max="99"
+                      value={this.state.datasets[0].tableData[index]}
+                      onChange={(e) => this.handleChange(this.enriche, this.state, e.target)}
+                    />
+                  </Col>
+                </Form.Group>
               </Col>
-            </Row>
-          ))}
-          <Row key={labels.length}>
-          <Col sm={2}></Col>
-          <Col sm={2}>{total.label}</Col>
-              <Col sm={4} className={total.color}>
-                {total.value}
-              </Col>
-          </Row>
+            ))}
+            <Col sm={{ span: 12, offset: 4 }} md={{ span: 12, offset: 4 }}>
+              <Form.Group as={Row} controlId={labels.length+1}>
+                <Form.Label>{total.label}</Form.Label>
+                <Col sm={4} xs={4}>
+                  <Form.Control name={"total"}
+                    className={total.color}
+                    disabled
+                    value={total.value}
+                  />
+                </Col>
+              </Form.Group>
+            </Col>
+          </Form>
         </Container>
-      </form>
-      </div>
+      </Container>
     );
   }
 }
