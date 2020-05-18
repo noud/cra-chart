@@ -1,6 +1,11 @@
 ![chart](./docs/doughnut-chart.png?raw=true "chart")
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and [react-chartjs-2](http://jerairrest.github.io/react-chartjs-2) was added to use [Chart.js](https://www.chartjs.org).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Additions
+
+- [react-chartjs-2](http://jerairrest.github.io/react-chartjs-2) to use [Chart.js](https://www.chartjs.org)
+- [React Bootstrap](https://react-bootstrap.github.io) to use [Bootstrap](https://getbootstrap.com)
 
 ## Available Scripts
 
