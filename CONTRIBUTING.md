@@ -8,7 +8,7 @@ Please write tests for new code you create.
 
 ## Submitting changes
 
-Please send a [GitHub Pull Request to cra-chartjs](https://github.com/noud/cra-chartjs/pull/new/master) with a clear list of what you've done (read more about [pull requests](http://help.github.com/pull-requests/)). Please follow our coding conventions (below) and make sure all of your commits are atomic (one feature per commit).
+Please send a [GitHub Pull Request to cra-chartjs](https://github.com/noud/cra-chartjs/pull/new/master) with a clear list of what you've done (read more [About pull requests](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)). Please follow our coding conventions (below) and make sure all of your commits are atomic (one feature per commit).
 
 Always write a clear log message for your commits. One-line messages are fine for small changes, but bigger changes should look like this:
 
