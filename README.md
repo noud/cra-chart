@@ -1,6 +1,6 @@
 ![chart](./docs/doughnut-chart.png?raw=true "chart")
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://create-react-app.dev).
 
 ## Additions
 
