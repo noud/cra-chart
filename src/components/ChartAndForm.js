@@ -16,35 +16,30 @@ import TheForm from './TheForm';
 
 const startData = [40, 45];
 
-const labels = [
-  'Noud',
-  'Balder',
-];
-
 const free = {
   color: 'gray',
   label: 'free'
 };
 
-const total = {
-  label: 'Total'
-};
+const labels = [
+  'Noud',
+  'Balder',
+];
+
+const colors = [
+  'red',
+  'blue',
+  free.color
+]
 
 const getState = () => ({
   labels: [],
   datasets: [{
+    // label: '# of Votes',
     data: [],
     tableData: [],
-    backgroundColor: [
-    '#FF6384',
-    '#36A2EB',
-    free.color
-    ],
-    hoverBackgroundColor: [
-    '#FF6384',
-    '#36A2EB',
-    free.color
-    ]
+    backgroundColor: colors,
+    hoverBackgroundColor: colors
   }]
 });
 
@@ -55,11 +50,18 @@ merge(defaults, {
       // easing: "easeOut",
       rotate: true,
       // scale: false
-  },
-  responsive: true,
-  line: {
-      borderColor: '#F85F73',
     },
+    responsive: true,
+    line: {
+        borderColor: '#F85F73',
+    },
+    legend: {
+      display: false,
+      // positioin: 'right',
+      labels: {
+        fontColor: 'black',
+      }
+    }
   },
 });
 
@@ -153,6 +155,7 @@ class ChartAndForm extends React.Component {
 
     return (
         <Container>
+          <br />
           <Doughnut data={this.state} redraw />
           <br />
           <Provider store={store}>
