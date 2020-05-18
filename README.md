@@ -1,4 +1,4 @@
-# CRA 🍩 Doughnut Chart.js
+# 🍩 CRA Doughnut Chart.js
 
 ![doughnut-chart](./docs/doughnut-chart.png?raw=true "doughnut-chart")
 
