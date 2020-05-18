@@ -11,15 +11,21 @@ import setRemainer from '../lib/setRemainer';
 
 const startData = [40, 45];
 
+const free = {
+  color: 'gray',
+  label: 'free'
+};
+
 const labels = [
   'Noud',
   'Balder',
 ];
 
-const free = {
-  color: 'gray',
-  label: 'free'
-};
+const colors = [
+  'red',
+  'blue',
+  free.color
+]
 
 const total = {
   label: 'Total'
@@ -28,18 +34,11 @@ const total = {
 const getState = () => ({
   labels: [],
   datasets: [{
+    // label: '# of Votes',
     data: [],
     tableData: [],
-    backgroundColor: [
-    '#FF6384',
-    '#36A2EB',
-    free.color
-    ],
-    hoverBackgroundColor: [
-    '#FF6384',
-    '#36A2EB',
-    free.color
-    ]
+    backgroundColor: colors,
+    hoverBackgroundColor: colors
   }]
 });
 
@@ -50,11 +49,18 @@ merge(defaults, {
       // easing: "easeOut",
       rotate: true,
       // scale: false
-  },
-  responsive: true,
-  line: {
-      borderColor: '#F85F73',
     },
+    responsive: true,
+    line: {
+        borderColor: '#F85F73',
+    },
+    legend: {
+      display: false,
+      // positioin: 'right',
+      labels: {
+        fontColor: 'black',
+      }
+    }
   },
 });
 
@@ -153,7 +159,7 @@ class ChartAndForm extends React.Component {
               {labels.map((value, index) => (
                 <Form.Group as={Row} className="Form-Group-left" controlId={index}>
                   <Col xs={1}>
-                    <Form.Label>{labels[index]}</Form.Label>
+                    <Form.Label className={colors[index]} >{labels[index]}</Form.Label>
                   </Col>
                   <Col xs={{ span: 3, offset: 1 }}>
                     <Form.Control className="Form-Control-numeric"
