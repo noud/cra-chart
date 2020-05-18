@@ -1,7 +1,8 @@
 import { cloneDeep, merge } from 'lodash';
 import React from 'react';
 
-import {ChartAndFormContext} from './ChartAndFormContext';
+import { Provider } from 'react-redux'
+import store from '../redux/store'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap'
@@ -151,13 +152,13 @@ class ChartAndForm extends React.Component {
     // total.color = total.value > 100 ? 'text-danger' : null;
 
     return (
-      <Container>
-        <Doughnut data={this.state} redraw />
-        <br />
-        <ChartAndFormContext.Provider value={this.state}>
-          <TheForm labels={labels} state={this.state} enriche={this.enriche} handleChange={this.handleChange}/>
-        </ChartAndFormContext.Provider>
-     </Container>
+        <Container>
+          <Doughnut data={this.state} redraw />
+          <br />
+          <Provider store={store}>
+            <TheForm labels={labels} state={this.state} enriche={this.enriche} handleChange={this.handleChange}/>
+          </Provider>
+      </Container>
     );
   }
 }
