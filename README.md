@@ -1,6 +1,6 @@
 # CRA 🍩 Doughnut Chart.js
 
-![cdoughnut-hart](./docs/doughnut-chart.png?raw=true "doughnut-chart")
+![doughnut-chart](./docs/doughnut-chart.png?raw=true "doughnut-chart")
 
 This project was bootstrapped with [Create React App](https://create-react-app.dev).
 
