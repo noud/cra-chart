@@ -151,6 +151,7 @@ class ChartAndForm extends React.Component {
 
     return (
       <Container>
+        <br />
         <Doughnut data={this.state} redraw />
         <br />
         <Container>
