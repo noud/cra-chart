@@ -1,13 +1,17 @@
 import { cloneDeep, merge } from 'lodash';
 import React from 'react';
 
+import {ChartAndFormContext} from './ChartAndFormContext';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Form } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 import { Doughnut, defaults } from 'react-chartjs-2';
 
 import getRemainer from '../lib/getRemainer';
 import setRemainer from '../lib/setRemainer';
+
+import TheForm from './TheForm';
 
 const startData = [40, 45];
 
@@ -68,10 +72,13 @@ class ChartAndForm extends React.Component {
     initialState.datasets[0].data.push(getRemainer(initialState.datasets[0].data));
     initialState.datasets[0].tableData = cloneDeep(initialState.datasets[0].data);
     this.state = cloneDeep(this.enriche(initialState));
+    this.state.handleChange = this.handleChange;
+    this.state.enriche = this.enriche;
     this.prevState = cloneDeep(this.state);
   }
 
   handleChange(enriche, state, value) {
+    console.log('handleChange', state, value);
     let defaultState = enriche(state);
     if (this !== undefined) {
       defaultState.datasets[0].tableData[parseInt(value.name)] = parseInt(value.value); // <<<<
@@ -107,7 +114,7 @@ class ChartAndForm extends React.Component {
   enriche(state) {
     // @todo improve
     // return state
-    var { datasets: values, labels } = state;
+    const { datasets: values, labels } = state;
     console.log('enrich',labels,values)
     let currentState = getState();
 
@@ -140,50 +147,17 @@ class ChartAndForm extends React.Component {
     // @todo redraw
     // https://github.com/jerairrest/react-chartjs-2/issues/90
 
-    total.value = this.state.datasets[0].tableData.reduce((accumulator, currentValue) => accumulator + currentValue);
-    total.color = total.value > 100 ? 'text-danger' : null;
+    // total.value = this.state.datasets[0].tableData.reduce((accumulator, currentValue) => accumulator + currentValue);
+    // total.color = total.value > 100 ? 'text-danger' : null;
 
     return (
       <Container>
         <Doughnut data={this.state} redraw />
         <br />
-        <Container>
-          <Col xs={{ span: 10, offset: 3 }}>
-            <Form className="Form">
-              {labels.map((value, index) => (
-                <Form.Group as={Row} className="Form-Group-left" controlId={index}>
-                  <Col xs={1}>
-                    <Form.Label>{labels[index]}</Form.Label>
-                  </Col>
-                  <Col xs={{ span: 3, offset: 1 }}>
-                    <Form.Control className="Form-Control-numeric"
-                      name={index}
-                      type="number"
-                      min="0"
-                      max="99"
-                      value={this.state.datasets[0].tableData[index]}
-                      onChange={(e) => this.handleChange(this.enriche, this.state, e.target)}
-                    />
-                  </Col>
-                </Form.Group>
-              ))}
-              <Form.Group as={Row} className="Form-Group-left" controlId={labels.length+1}>
-                <Col xs={1} sm={1} md={1}>
-                  <Form.Label>{total.label}</Form.Label>
-                </Col>
-                <Col xs={{ span: 3, offset: 1 }}>
-                  <Form.Control className={total.color + " Form-Control-numeric" }
-                    name={"total"}
-                    disabled
-                    type="number"
-                    value={total.value}
-                  />
-                </Col>
-              </Form.Group>
-            </Form>
-          </Col>
-        </Container>
-      </Container>
+        <ChartAndFormContext.Provider value={this.state}>
+          <TheForm labels={labels} state={this.state} enriche={this.enriche} handleChange={this.handleChange}/>
+        </ChartAndFormContext.Provider>
+     </Container>
     );
   }
 }
