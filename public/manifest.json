@@ -1,6 +1,6 @@
 {
   "short_name": "cra-chartjs",
-  "name": "RCA Doughnut Chart.js",
+  "name": "CRA Doughnut Chart.js SPA",
   "icons": [
       {
           "src": "favicon.ico",
