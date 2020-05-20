@@ -2,7 +2,7 @@
 
 ![doughnut-chart](./docs/doughnut-chart.png?raw=true "doughnut-chart")
 
-## [Specification](https://github.com/noud/blob/master/docs/specification.txt)
+## [Specification](https://github.com/noud/cra-chartjs/blob/master/docs/specification.txt)
 
 ## Tooling
 
