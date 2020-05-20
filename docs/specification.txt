@@ -1,0 +1,12 @@
+Als je al wat wilt doen, kun je een 'donut slicer' voor me maken. Dat kunnen we tzt goed gebruiken in het platform.
+De donut slicer moet een donut chart laten zien, en die in verschillende stukken (met verschillende kleuren) kunnen tonen, naast een tabel waarin namen en percentages worden weergegeven (kunnen worden ingevuld en worden aangepast). 
+Iets gebruiken dat al bestaat is helemaal OK.
+Ik zag dit, misschien is het bruikbaar. 
+https://www.chartjs.org/docs/latest/charts/doughnut.html
+
+Bijvoorbeeld: 
+- Noud 40%
+- Balder 45%
+.. in dit geval is er dus 5% niet toebedeeld. Dat stuk van de donut is dan grijs.
+Totaal: 100%
+Als er bij wijzigingen (door typen in een tabel) meer dan 100% wordt toebedeeld, dan slaat het totaal rood uit (105%)  maar de donut visual veranderd niet (meer).
