@@ -1,4 +1,4 @@
-# 🍩 [CRA](https://create-react-app.dev) Doughnut Chart [SPA](https://en.wikipedia.org/wiki/Single-page_application)
+# 🍩 Doughnut Chart [SPA](https://en.wikipedia.org/wiki/Single-page_application)
 
 ![doughnut-chart](./docs/doughnut-chart.png?raw=true "doughnut-chart")
 
